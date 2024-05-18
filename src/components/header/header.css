@@ -1,0 +1,159 @@
+
+#header{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 100%;
+    padding: 0px 30px;
+    padding-bottom: 70px;
+    z-index: 49;
+}
+
+#header nav{
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+#header nav ul{
+    display: flex;
+    gap: 20px;
+}
+
+#header nav ul #logenBut{
+    padding: 0px 20px;
+    background-color: var(--color-text-blue);
+    border-radius: 5px;
+}
+
+#header nav ul #logenBut a{
+    color: #fff;
+}
+
+
+#header nav ul li:hover a{
+    background-image: var(--linear-gradient);
+    background-clip: text;
+    color: transparent;
+}
+
+
+#header nav #navInMobileScreen{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px 10px;
+    position: absolute;
+    top: 80px;
+    left: 0px;
+    width: 100%;
+}
+
+#header nav #navInMobileScreen li{
+    width: 100%;
+    transition: 0.2s;
+}
+
+#header nav #navInMobileScreen li a{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px;
+
+}
+
+
+#header nav #navInMobileScreen div{
+    width: 100%;
+}
+
+
+#header nav #navInMobileScreen li svg{
+    transition: 0.5s;
+    transform: translateX(20px);
+}
+#header nav #navInMobileScreen li:hover svg{
+    transform: translateX(0px);
+}
+#header nav #navInMobileScreen li:hover{
+    background-color: #333;
+}
+
+
+
+.hamburger {
+    cursor: pointer;
+    display: none;
+  }
+  
+  .hamburger input {
+    display: none;
+  }
+  
+  .hamburger svg {
+    /* The size of the SVG defines the overall size */
+    height: 3em;
+    /* Define the transition for transforming the SVG */
+    transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .line {
+    fill: none;
+    stroke: #ccc;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 3;
+    /* Define the transition for transforming the Stroke */
+    transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+                stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .line-top-bottom {
+    stroke-dasharray: 12 63;
+  }
+  
+  .hamburger input:checked + svg {
+    transform: rotate(-45deg);
+  }
+  
+  .hamburger input:checked + svg .line-top-bottom {
+    stroke-dasharray: 20 300;
+    stroke-dashoffset: -32.42;
+  }
+  
+
+
+@media(max-width:900px){
+    #header{
+        box-shadow: 3px 0px 5px #ccc;
+        height: 60px;
+        overflow: hidden;
+        transition: 0.5s;
+        position: fixed;
+        top: 0px;
+        width: 100%;
+        background-color: var(--bg-color-main);
+        padding: 0px;
+    }
+    #header nav{
+        height: 60px;
+    }
+    #header nav ul{
+        display: none;
+    }
+    #header nav #navInMobileScreen{
+        display: flex;
+    }
+    .hamburger {
+        display: inline-block;
+    }
+}
+
+
+
