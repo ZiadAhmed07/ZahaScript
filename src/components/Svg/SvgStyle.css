@@ -1,0 +1,20 @@
+
+ #svg{
+    width: 90%;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    top: 100px;
+    overflow: hidden;
+}
+
+@media(max-width:1020px){
+ #svg svg{
+        opacity: 0.2;
+    }
+}
+
+
+
+
+
