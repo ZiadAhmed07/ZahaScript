@@ -15,17 +15,21 @@ export default function Form() {
     const [nameProject, setNameProject] = useState("")
     const router = useRouter()
 
+
+    let userData = false
+    if (getCookie("userData")) {
+        const user = JSON.parse(getCookie("userData"))
+        userData = user
+    }
+
+
     function postData(e) {
         e.preventDefault()
         setLoader(true)
 
-        let userData = false
-        if (getCookie("userData")) {
-            const user = JSON.parse(getCookie("userData"))
-            userData = user
-        }
 
         if (!userData) {
+            localStorage.setItem("prevUrl" , "/order")
             router.replace("user/login")
             return toast.warn("ينبغى عليك التسجيل اولا")
         }

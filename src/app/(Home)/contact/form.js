@@ -64,6 +64,7 @@ export default function Form(){
         }
 
         if(!userData){
+            localStorage.setItem("prevUrl" , "/contact")
             router.replace('user/login')
             return toast.warn('ينبغى عليك التسجيل اولا') 
         }

@@ -134,6 +134,7 @@ export default function Form() {
         }
 
         if(!userData){
+            localStorage.setItem("prevUrl" , "/jobs")
             router.replace("user/login")
             return toast.warn('ينبغى عليك التسجيل اولا') 
         }

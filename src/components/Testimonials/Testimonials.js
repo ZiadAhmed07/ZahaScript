@@ -51,6 +51,7 @@ export default function Testimonials() {
         }
 
         if(!userData){
+            localStorage.setItem("prevUrl" , "/#Testimonials")
             router.replace("user/login")
             setLoader(false)
             return toast.warning("ينبغى عليك تسجيل الدخول اولا ")

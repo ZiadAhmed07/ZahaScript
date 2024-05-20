@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={ibm.className}>
-        <ToastContainer/>
+        <ToastContainer theme={"colored"} className="max-sm:w-[320px] top-10"/>
         <NextTopLoader height={5}/>
         {/*<Cursor/>*/}
         <div>

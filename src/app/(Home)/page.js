@@ -39,8 +39,11 @@ export default function Home() {
       </section>
       <About/> 
 
-      <Feature/>      
-     <Testimonials/>
+      <Feature/>  
+      <div id="Testimonials">
+        <Testimonials/>
+      </div>    
+     
       <Stats/>
       <Pricing/>
       
