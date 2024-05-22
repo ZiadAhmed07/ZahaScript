@@ -20,11 +20,6 @@ export default function page() {
   const router = useRouter()
   let prevUrl = "/"
 
-  useEffect(()=>{
-    if (localStorage.getItem("prevUrl")){
-      prevUrl = localStorage.getItem("prevUrl") 
-    }
-  },[])
 
   let userData = false
   if (getCookie('userData')) {
@@ -35,6 +30,10 @@ export default function page() {
   function PostFnLogin(e) {
     e.preventDefault()
     setLoader(1)
+
+    if (localStorage.getItem("prevUrl")){
+      prevUrl = localStorage.getItem("prevUrl") 
+    }
 
     axios({
       method: "post",
@@ -53,7 +52,7 @@ export default function page() {
         isAdmin: res.data.user.isAdmin,
         id: res.data.user.id
       })
-
+      return toast.success("تم تسجيل الدخول")
     }).catch((err) => {
       setLoader(0)
       console.log(err)

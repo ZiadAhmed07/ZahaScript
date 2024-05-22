@@ -4,7 +4,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import Logo from "/public/logo.png"
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
+
 import "./header.css"
 import Avatar from "/public/images/3.png"
 import { getCookie, deleteCookie } from 'cookies-next';
@@ -14,6 +15,7 @@ import { Domin } from '@/api/data'
 export default function HeaderCom() {
 
     const pathName = usePathname()
+    const router = useRouter()
     const [dis, setDis] = useState("none")
     const [num, setNum] = useState(0)
     const [height, setHeight] = useState(60)
@@ -60,15 +62,20 @@ export default function HeaderCom() {
 
     function FunLogout() {
         deleteCookie('userData')
-        location.reload()
+        buttonUser()
+        buttonUserInMob()
 
         axios({
             url: `${Domin}/api/auth/logout`,
-            method: 'delete',
+            method: 'post',
             headers: {
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${userData.token}`,
             }
+        }).then(()=>{
+            router.replace("/user/login")
+        }).catch((err)=>{
+            console.log(err)
         })
     }
 
@@ -131,7 +138,7 @@ export default function HeaderCom() {
         }
         if (!userData) {
             return (
-                <div className='mt-5'>
+                <div className='max-sm:mt-6'>
                     <Link onClick={()=>{setPrevUrl()}} className="flex items-center gap-x-2 font-medium text-white/[.8] hover:text-white sm:border-s sm:border-white/[.3] sm:my-6 sm:ps-6" href="/user/login">
                         <svg className="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
                         تسجيل الدخول

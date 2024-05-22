@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
     <div className="dashbordContainer">
       <Navbar/>
       <Sitbar/>
-      <div className="pt-[100px] pr-[30px] md:pr-[210px] pb-[30px] pl-[30px] bg-gray-900 min-h-screen">
+      <div className=" px-2 pt-[100px] sm:pr-[30px] md:pr-[210px] pb-[30px] sm:pl-[30px] bg-gray-900 min-h-screen">
          {children}
       </div>
      
