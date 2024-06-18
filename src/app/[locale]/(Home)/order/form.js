@@ -33,7 +33,7 @@ export default function Form() {
 
         if (!userData) {
             localStorage.setItem("prevUrl" , `${pathName.slice(0, 3)}/order`)
-            router.replace(`${pathName.slice(0, 3)}user/login`)
+            router.replace(`${pathName.slice(0, 3)}/user/login`)
             return toast.warn(translation.order.form.mess.label1)
         }
 
