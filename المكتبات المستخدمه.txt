@@ -1,0 +1,13 @@
+-preline
+-tailwindui
+-icons-bootstrap
+-loader-react 
+-framer-motion
+-axios
+-strapi 
+    user = zaha@gamil.com
+    password
+-clerk.com
+    user = ziad07139@gamil.com
+-render.com
+    https://zaha-server.onrender.com/
