@@ -33,7 +33,7 @@ export default function page() {
                             {
                                 [
                                     { img: img1, link: "https://www.facebook.com/profile.php?id=100064055737356" },
-                                    { img: img2, link: "tel:+201019734795" },
+                                    { img: img2, link: "https://api.whatsapp.com/send?phone=+201287972828&amp;text=hello" },
                                     { img: img3, link: "#" },
                                     { img: img4, link: "mailto:ziad07139@gamil.com" }
                                 ].map((el,idx) => {
