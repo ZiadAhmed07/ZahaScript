@@ -2,21 +2,26 @@
 "use client"
 
 import {motion } from "framer-motion"
+import { usePathname } from "next/navigation"
+import t from "../../../messages/translations"
 
 export default function Stats() {
+
+    const pathName = usePathname()
+    const translation = t('Index',pathName.slice(1,3))
 
     const stats = [
         {
             data: "24+",
-            title: "العملاء"
+            title: translation.home.stats.label5
         },
         {
             data: "58+",
-            title: "المشاريع"
+            title: translation.home.stats.label4
         },
         {
-            data: "30+",
-            title: "كل التقيمات"
+            data: "4.8",
+            title: translation.home.stats.label3
         },
     ]
 
@@ -31,10 +36,10 @@ export default function Stats() {
             >
                 <div className="max-w-2xl mx-auto text-center">
                     <h3 className="text-white text-3xl font-semibold sm:text-4xl">
-                        كن من المحظوظين بتعاملك معنا
+                        {translation.home.stats.label1}
                     </h3>
                     <p className="mt-3 text-gray-300">
-                        أنضم الى عائلة ZaHa Script
+                        {translation.home.stats.label2}
                     </p>
                 </div>
                 <div className="mt-12">

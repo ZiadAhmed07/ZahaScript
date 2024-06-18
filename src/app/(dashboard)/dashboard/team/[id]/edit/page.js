@@ -270,7 +270,7 @@ export default function page({ params }) {
         <div className="bg-gray-700 min-h-[600px] rounded-md py-6 sm:px-20 px-6 flex flex-col items-center gap-6">
             <CheckAdmin />
             {funLoader()}
-            <p className="font-bold text-xl">اضافه عضو جديد </p>
+            <p className="font-bold text-xl">تعديل عضو الفريق </p>
             {getData()}
 
         </div>

@@ -15,6 +15,7 @@ export const metadata = {
   description: "The best company for creating websites",
 };
 
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">

@@ -59,7 +59,7 @@ export default function Comment() {
 
         if (Comments) {
             return (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
                     {
                         Comments?.map((el, idx) => {
                             return (
@@ -178,7 +178,7 @@ export default function Comment() {
         }
         if (bestComments) {
             return (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
                     {
                         bestComments?.map((el, idx) => {
                             return (

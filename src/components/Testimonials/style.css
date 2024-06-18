@@ -22,6 +22,7 @@
     border-radius: 5px;
     padding: 5px;
     margin: 0px 20px;
+    width: 250px;
 }
 #form input:focus{
     outline: 3px solid var(--color-text-blue);
@@ -33,7 +34,7 @@
     font-family: 60px;
     padding: 5px 15px;
     color: #f0f0f0;
-    width: 100px;
+    width: 150px;
     cursor: pointer;
 }
 

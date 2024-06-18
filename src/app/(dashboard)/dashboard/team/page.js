@@ -51,15 +51,15 @@ export default function Team() {
         }
         if (Team) {
             return (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {Team?.map((el) => {
                         return (
                             <div key={el.id} className="bg-gray-700 rounded-md p-4 h-[280px] relative">
                                 <div className="flex flex-col items-center">
                                     <div className='relative'>
                                         <Image src={Avatar} alt=".." className="w-[100px] h-[100px] rounded-full mb-2" />
-                                        <div className='absolute w-6 h-6 rounded-full bg-blue-500 bottom-2 right-0 flex items-center justify-center text-gray-300 font-bold'>
-                                            <p>{el.numProject}</p>
+                                        <div className='absolute w-6 h-6 rounded-full bg-blue-500 bottom-2 right-0 flex items-center justify-center text-gray-300 text-xs font-bold pt-1'>
+                                            {el.numProject}
                                         </div>
                                     </div>
                                     <p className="text-lg">{el.name}</p>

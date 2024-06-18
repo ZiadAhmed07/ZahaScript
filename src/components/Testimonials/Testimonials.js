@@ -10,7 +10,8 @@ import Loader from "../loader/loader"
 import axios from "axios"
 import { Domin } from "@/api/data"
 import { getCookie } from 'cookies-next';
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
+import t from "../../../messages/translations"
 
 export default function Testimonials() {
 
@@ -18,6 +19,8 @@ export default function Testimonials() {
     const [comment, setComment] = useState("")
     const [loader, setLoader] = useState(false)
     const router = useRouter()
+    const pathName = usePathname()
+    const translation = t('Index',pathName.slice(1,3))
 
     let userData = false
     if (getCookie("userData")) {
@@ -43,18 +46,18 @@ export default function Testimonials() {
             }).then((res)=>{
                 setLoader(false)
                 setComment('')
-                return toast.success("تم اضافه التعليق بنجاح ")
+                return toast.success(translation.home.testimonials.mess.label1)
             }).catch((err)=>{
                 setLoader(false)
-                return toast.error("حدث خطأ ما! حاول مجددا")
+                return toast.error(translation.home.testimonials.mess.label2)
             })
         }
 
         if(!userData){
-            localStorage.setItem("prevUrl" , "/#Testimonials")
-            router.replace("user/login")
+            localStorage.setItem("prevUrl" , `${pathName.slice(0, 3)}/#Testimonials`)
+            router.replace(`${pathName.slice(0, 3)}/user/login`)
             setLoader(false)
-            return toast.warning("ينبغى عليك تسجيل الدخول اولا ")
+            return toast.warning(translation.home.testimonials.mess.label3)
         }
     }
 
@@ -140,7 +143,7 @@ export default function Testimonials() {
 
                     <div className="max-w-2xl w-3/4 lg:w-1/2 mb-6 sm:mb-10 md:mb-16">
                         <h2 className="text-2xl sm:text-3xl lg:text-4xl text-white font-semibold">
-                            محبوبون من كافة عملائنا حول العالم
+                            {translation.home.testimonials.label1}
                         </h2>
                     </div>
 
@@ -154,8 +157,8 @@ export default function Testimonials() {
                     </motion.div>
 
                     <form id="form" className="bg-gray-700" onSubmit={postComment}>
-                        <input type={"text"} placeholder="اضافة تعليق" required minLength={10} value={comment} onChange={(el) => { setComment(el.target.value) }} />
-                        <input type={"submit"} value="اضافة " id="butSub" />
+                        <input type={"text"} placeholder={translation.home.testimonials.label2} required minLength={10} value={comment} onChange={(el) => { setComment(el.target.value) }} />
+                        <input type={"submit"} value={translation.home.testimonials.label3} id="butSub" />
                     </form>
 
                 </div>

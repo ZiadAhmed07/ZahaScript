@@ -5,7 +5,7 @@ import "./gradientsStyle.css"
 
 function Gradients(){
 
-
+ 
   /* 
   
 

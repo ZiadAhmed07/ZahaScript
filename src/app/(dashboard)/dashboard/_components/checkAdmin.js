@@ -20,7 +20,7 @@ export default function CheckAdmin() {
     useEffect(()=>{
         if (!userData) {
             localStorage.setItem("prevUrl" , "/dashboard")
-            router.replace('/user/login')
+            router.replace('/ar/user/login')
         }
     
         if (userData) {

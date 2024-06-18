@@ -34,24 +34,26 @@
 
 body{
   background-color: var(--bg-color-main);
-  direction: rtl;
 }
 
 /* width */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 
+::-webkit-scrollbar:hover{
+  width: 12px;
+}
 /* Track */
 ::-webkit-scrollbar-track {
   background: var(--bg-color-main);
-  box-shadow: inset 0 0 5px grey
+  box-shadow: inset 0 0 5px grey;
 }
 
 /* Handle */
-::-webkit-scrollbar-thumb {
-  background-image: var(--linear-gradient);
-  border-radius: 10px;
+::-webkit-scrollbar-thumb{
+  background-color: var(--color-text-blue);
+  border-radius: 0px;
 }
 
 

@@ -263,7 +263,8 @@ export default function Oreder({ params }) {
     }
 
     function deleteOrder(id){
-        console.log(id)
+        setLoader(true)
+
         axios({
             method:'delete',
             url:`${Domin}/api/admin/softDelete/order/${id}`,
@@ -271,9 +272,11 @@ export default function Oreder({ params }) {
                 'Authorization':`Bearer ${userData.token}`
             },
         }).then(()=>{
+            setLoader(false)
             router.replace("/dashboard/orders")
             return toast.success("تم حذف الطلب بنجاح")
         }).catch((err)=>{
+            setLoader(false)
             console.log(err)
             return toast.error("حدث خطأ ما")
         })

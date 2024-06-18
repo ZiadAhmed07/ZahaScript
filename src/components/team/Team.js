@@ -20,15 +20,15 @@ export default function TeamCom() {
         })
     },[])
 
-    function HtmlBoss() {
+    function HtmlTeam() {
         if (data) {
             return (
                 data?.map((el , idx) => {
                     return(
                     <li key={idx} className=" w-44 max-sm:bg-gray-700/50 max-sm:w-full max-sm:p-6">
                         <div className="w-24 h-24 mx-auto">
-                            <Image
-                                src={Avatar5}
+                            <img
+                                src={`${Domin}/${el.photo}`}
                                 className="w-full h-full rounded-full"
                                 alt="..."
                             />
@@ -67,7 +67,7 @@ export default function TeamCom() {
 
     return (
         <ul className="flex items-center w-full justify-around gap-7 flex-wrap">
-            {HtmlBoss()}
+            {HtmlTeam()}
         </ul>
     )
 }

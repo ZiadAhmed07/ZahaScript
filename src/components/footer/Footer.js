@@ -3,15 +3,19 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useState, useEffect } from "react"
+import t from "../../../messages/translations"
 
 export default function Footer() {
 
+  const pathName = usePathname()
+  const translation = t('Index',pathName.slice(1,3))
+
   const linkPage = [
-    { lable: 'الرئيسيه', Link: '/' },
-    { lable: 'انشاء موقع', Link: '/order' },
-    { lable: 'فريق العمل', Link: '/team' },
-    { lable: 'انضم الينا', Link: '/jobs' },
-    { lable: 'تواصل معنا', Link: '/contact' },
+    { lable: translation.navbar.home, Link: `${pathName.slice(0, 3)}` },
+    { lable: translation.navbar.order, Link: `${pathName.slice(0, 3)}/order` },
+    { lable: translation.navbar.team, Link: `${pathName.slice(0, 3)}/team` },
+    { lable: translation.navbar.job, Link: `${pathName.slice(0, 3)}/jobs` },
+    { lable: translation.navbar.contact, Link: `${pathName.slice(0, 3)}/contact` },
   ]
 
   const linkContact = [
@@ -32,7 +36,7 @@ export default function Footer() {
     },
     {
       svg: <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-telephone-fill" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z" />
+        <path fillRule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z" />
       </svg>, Link: 'tel:01287972828'
     }
   ]
@@ -45,9 +49,9 @@ export default function Footer() {
           <div className="h-full flex flex-col justify-center gap-10">
             <ul className="flex justify-center gap-4 flex-wrap">
               {
-                linkContact.map((el)=>{
+                linkContact.map((el , ind)=>{
                   return(
-                    <li className="bg-gray-700 p-3 rounded-full hover:bg-blue-500">
+                    <li key={ind} className="bg-gray-700 p-3 rounded-full hover:bg-blue-500">
                       <Link target={"_blank"} href={el.Link}>
                         {el.svg}
                       </Link>
