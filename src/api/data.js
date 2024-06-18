@@ -1,1 +1,0 @@
-export const Domin = "https://zaha-script.net"
