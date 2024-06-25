@@ -1,4 +1,5 @@
 import Image from "next/image"
+import NewOrder from "../NewOrder"
 import SitbarMobile from "./sitbarMobile"
 import Avatar from "/public/images/3.png"
 import Logo from "/public/logo.png"
@@ -11,6 +12,7 @@ export default function Navbar() {
                 </div>
                 <div className="flex gap-6">
                     <SitbarMobile/>
+                    <NewOrder/>
                     <Image src={Avatar} alt="...." width={50} height={50} className="rounded-full" />
                 </div>
         </div>

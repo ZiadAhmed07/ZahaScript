@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <div className="dashbordContainer">
+    <div className="dashbordContainer" dir="rtl">
       <Navbar/>
       <Sitbar/>
       <div className=" px-2 pt-[100px] sm:pr-[30px] md:pr-[210px] pb-[30px] sm:pl-[30px] bg-gray-900 min-h-screen">

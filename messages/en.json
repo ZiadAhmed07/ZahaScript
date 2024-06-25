@@ -142,7 +142,39 @@
         "label3":"Clients",
         "label4":"Projects",
         "label5":"Overall rating"
-      }
+      },
+        "price": {
+          "label1": "Prices",
+          "label2": "Plant now, and you will harvest tomorrow",
+          "label3": "Choose the right price for your project",
+          "label4": "Simple websites may be suitable for small businesses or individuals who need a basic online presence without many features or customization. Advanced websites are more suitable for companies that require advanced functionality, unique design, high security, and continuous technical support to ensure the best performance and user experience.",
+          "price1": {
+            "label1": "Advanced Website",
+            "label2": "300",
+            "label3": "Website",
+            "label4": "Prices start from $300 for advanced websites",
+            "label5": "Unlimited number of pages",
+            "label6": "Advanced dynamic features",
+            "label7": "Custom and innovative design with animations",
+            "label8": "24/7",
+            "label9": "CRM dashboard with content update capability",
+            "label10": "Advanced protection against common attacks",
+            "label11": "Higher cost due to customizations and advanced features"
+          },
+          "price2": {
+            "label1": "Simple Website",
+            "label2": "40",
+            "label3": "Website",
+            "label4": "Prices start from $40 for basic websites",
+            "label5": "Limited number of pages (3-5 pages)",
+            "label6": "Basic interactive features",
+            "label7": "Custom and innovative design",
+            "label8": "24/7",
+            "label9": "Selective and specific content presentation",
+            "label10": "Advanced protection against common attacks",
+            "label11": "Lower cost"
+          }
+        }
     },
     "team":{
       "boss":{
@@ -247,3 +279,7 @@
     }
   }
 }
+
+
+
+

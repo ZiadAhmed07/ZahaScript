@@ -23,14 +23,16 @@ export default function page() {
 
     const translation = t('Index',pathName.slice(1,3))
 
+    useEffect(()=>{
+        if(userData){
+            router.replace(`${pathName.slice(0, 3)}`)
+          }
+    },[])
+
     let userData = false
     if (getCookie('userData')) {
         const user = JSON.parse(getCookie('userData'))
         userData = user
-    }
-
-    if (userData) {
-        router.replace(`${pathName.slice(0, 3)}`)
     }
 
     const handleChange = (e) => {
@@ -74,12 +76,16 @@ export default function page() {
     const id = localStorage.getItem('id')
 
     function resendOTP(){
+        setLoader(true)
+        setSeconds(60)
         axios({
             method:'get',
             url:`${Domin}/api/email/resend/${id}`
         }).then(()=>{
+            setLoader(false)
             return toast.success(translation.auth.otp.mess.label3)
         }).catch(()=>{
+            setLoader(false)
             return toast.error(translation.auth.otp.mess.label4)
         })
     }

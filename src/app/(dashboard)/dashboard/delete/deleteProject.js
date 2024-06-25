@@ -88,7 +88,7 @@ export default function DeleteProject(){
 
         axios({
             method:'delete',
-            url:`${Domin}/api/admin/forceDelete/job/${id}`,
+            url:`${Domin}/api/admin/forceDelete/project/${id}`,
             headers:{
                 'Authorization':`Bearer ${userData.token}`
             }
@@ -106,7 +106,7 @@ export default function DeleteProject(){
 
         axios({
             method:'get',
-            url:`${Domin}/api/admin/restore/job/${id}`,
+            url:`${Domin}/api/admin/restore/project/${id}`,
             headers:{
                 'Authorization':`Bearer ${userData.token}`
             }

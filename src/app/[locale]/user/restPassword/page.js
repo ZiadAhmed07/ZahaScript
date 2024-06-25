@@ -6,7 +6,7 @@ import axios from "axios";
 import { getCookie } from "cookies-next";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import { toast } from "react-toastify";
 import t from "../../../../../messages/translations";
 
@@ -21,15 +21,16 @@ export default function page() {
 
     const Translate = t('Index', pathName.slice(1, 3))
 
+    useEffect(()=>{
+        if(userData){
+            router.replace(`${pathName.slice(0, 3)}`)
+          }
+    },[])
 
     let userData = false
     if (getCookie('userData')) {
         const user = JSON.parse(getCookie('userData'))
         userData = user
-    }
-
-    if (userData) {
-        router.replace(`${pathName.slice(0, 3)}`)
     }
 
     function FunPostEmail(e) {

@@ -5,7 +5,7 @@ import Loader from "@/components/loader/loader";
 import Svg from "@/components/Svg/svg";
 import axios from "axios";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { usePathname, useRouter } from "next/navigation";
 import { getCookie } from "cookies-next";
@@ -22,10 +22,12 @@ export default function page() {
         const user = JSON.parse(getCookie('userData'))
         userData = user
     }
-  
-    if(userData){
-      router.replace(`${pathName.slice(0, 3)}`)
-    }
+
+    useEffect(()=>{
+        if(userData){
+            router.replace(`${pathName.slice(0, 3)}`)
+          }
+    },[])
 
     const [valueName , setName] = useState("")
     const [valueEmail , setEmail] = useState("")

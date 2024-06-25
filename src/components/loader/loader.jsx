@@ -22,7 +22,7 @@ export default function Loader() {
                 </div>
                 <div className="spoke"></div>
             </div>
-            <h3 className="text-lg text-gray-200">جارى التحميل...</h3>
+            <h3 className="text-lg text-gray-200">Loading...</h3>
         </div>
     )
 }

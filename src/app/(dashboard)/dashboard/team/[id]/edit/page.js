@@ -47,13 +47,15 @@ export default function page({ params }) {
         }).then((res) => {
             setData(res.data.data)
             setValues({
+                photo:res.data.data.photo,
+                imgIDCard:res.data.data.imgIDCard,
                 name: res.data.data.name,
                 user_id: res.data.data.user.id,
                 phoneNumber: res.data.data.phoneNumber,
                 job: res.data.data.job,
                 skills: res.data.data.skills,
                 numProject: res.data.data.numProject,
-                salary: res.data.data.salary,
+                salary: Math.floor(res.data.data.salary),
                 dateOfJoin: res.data.data.dateOfJoin,
                 address: res.data.data.address,
                 qualification: res.data.data.qualification

@@ -11,21 +11,21 @@ import { useRouter } from "next/navigation"
 
 export default function page() {
 
-    const [loader , setLoader] = useState(false)
-    const router = useRouter() 
+    const [loader, setLoader] = useState(false)
+    const router = useRouter()
 
-    const [name , setName] = useState("")
-    const [id , setID] = useState("")
-    const [photo , setPhoto] = useState(null)
-    const [phoneNumber , setPhoneNumber] = useState("")
-    const [job , setJob] = useState("")
-    const [skills , setSkills] = useState("")
-    const [numProject , setNumProject] = useState("")
-    const [salary , setSalary] = useState("")
-    const [dateOfJoin , setDateOfJoin] = useState("")
-    const [address , setAddress] = useState("")
-    const [qualification , setQualification] = useState("")
-    const [imgIDCard , setImgIDCard] = useState(null)
+    const [name, setName] = useState("")
+    const [id, setID] = useState("")
+    const [photo, setPhoto] = useState("")
+    const [phoneNumber, setPhoneNumber] = useState("")
+    const [job, setJob] = useState("")
+    const [skills, setSkills] = useState("")
+    const [numProject, setNumProject] = useState("")
+    const [salary, setSalary] = useState("")
+    const [dateOfJoin, setDateOfJoin] = useState("")
+    const [address, setAddress] = useState("")
+    const [qualification, setQualification] = useState("")
+    const [imgIDCard, setImgIDCard] = useState("")
 
     let userData = false
     if (getCookie('userData')) {
@@ -33,47 +33,50 @@ export default function page() {
         userData = user
     }
 
-    async function PostData(e){
+    async function PostData(e) {
         e.preventDefault()
-        
-        setLoader(true)
-        
-        axios({
-            method:'post',
-            url:`${Domin}/api/admin/create/team`,
-            headers:{
-                'Authorization':`Bearer ${userData.token}`
-            },
-            data : {
-                photo : photo,
-                name : name,
-                user_id : id,
-                phoneNumber : phoneNumber,
-                job : job,
-                skills : skills,
-                numProject : numProject,
-                salary : salary,
-                dateOfJoin : dateOfJoin,
-                address : address,
-                qualification : qualification,
-                imgIDCard : imgIDCard
-            }
-        }).then((res)=>{
-            console.log(res)
-            setLoader(false)
-            router.replace('/dashboard/team')
-            return toast.success("تم اضافه موظف جديد")
-        }).catch((err)=>{
-            console.log(err)
-            setLoader(false)
-            return toast.error("حدث خطأ ما ")
-        })
-    } 
 
-    function funLoader(){
-        if(loader){
-            return(
-                <Loader/>
+        setLoader(true)
+        if (photo) {
+            axios({
+                method: 'post',
+                url: `${Domin}/api/admin/create/team`,
+                headers: {
+                    'Authorization': `Bearer ${userData.token}`,
+                    'Content-Type': 'multipart/form-data'
+                },
+                data: {
+                    photo: photo,
+                    name: name,
+                    user_id: id,
+                    phoneNumber: phoneNumber,
+                    job: job,
+                    skills: skills,
+                    numProject: numProject,
+                    salary: salary,
+                    dateOfJoin: dateOfJoin,
+                    address: address,
+                    qualification: qualification,
+                    imgIDCard: imgIDCard
+                }
+            }).then((res) => {
+                console.log(res)
+                setLoader(false)
+                router.replace('/dashboard/team')
+                return toast.success("تم اضافه موظف جديد")
+            }).catch((err) => {
+                console.log(err)
+                setLoader(false)
+                return toast.error("حدث خطأ ما ")
+            })
+        }
+
+    }
+
+    function funLoader() {
+        if (loader) {
+            return (
+                <Loader />
             )
         }
     }
@@ -83,7 +86,7 @@ export default function page() {
             <CheckAdmin />
             {funLoader()}
             <p className="font-bold text-xl">اضافه عضو جديد </p>
-            <form onSubmit={(e)=>{PostData(e)}}>
+            <form onSubmit={(e) => { PostData(e) }}>
                 <div className="grid grid-cols-1 lg:grid-cols-2 w-full items-center gap-x-6 gap-y-2 relative">
                     <div className="flex flex-col gap-2">
                         <label className="text-lg">الصوره الشخصيه</label>
@@ -94,7 +97,7 @@ export default function page() {
                                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
                                 </svg>
                             </div>
-                            <input onChange={(e)=>{setPhoto(e.target.files[0])}} type={'file'} className="bg-gray-800 border-none w-full outline-none text-gray-200 px-2" />
+                            <input required accept="image/*" onChange={(e) => { setPhoto(e.target.files[0]) }} type={'file'} className="bg-gray-800 border-none w-full outline-none text-gray-200 px-2" />
                         </div>
                     </div>
                     <div className="flex flex-col gap-2">
@@ -105,7 +108,7 @@ export default function page() {
                                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
                                 </svg>
                             </div>
-                            <input onChange={(e)=>{setName(e.target.value)}} type={"text"} className="bg-gray-800 border-none w-full outline-none text-gray-200 px-2" />
+                            <input required onChange={(e) => { setName(e.target.value) }} type={"text"} className="bg-gray-800 border-none w-full outline-none text-gray-200 px-2" />
                         </div>
                     </div>
                     <div className="flex flex-col gap-2">
@@ -117,7 +120,7 @@ export default function page() {
                                     <path d="M16 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
                                 </svg>
                             </div>
-                            <input onChange={(e)=>{setID(e.target.value)}} type={'number'} className="bg-gray-800 border-none w-full outline-none text-gray-200 px-2" />
+                            <input required onChange={(e) => { setID(e.target.value) }} type={'number'} className="bg-gray-800 border-none w-full outline-none text-gray-200 px-2" />
                         </div>
                     </div>
                     <div className="flex flex-col gap-2">
@@ -128,7 +131,7 @@ export default function page() {
                                     <path fillRule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z" />
                                 </svg>
                             </div>
-                            <input onChange={(e)=>{setPhoneNumber(e.target.value)}} type={'number'} className="bg-gray-800 border-none w-full outline-none text-gray-200 px-2" />
+                            <input required onChange={(e) => { setPhoneNumber(e.target.value) }} type={'number'} className="bg-gray-800 border-none w-full outline-none text-gray-200 px-2" />
                         </div>
                     </div>
                     <div className="flex flex-col gap-2">
@@ -140,7 +143,7 @@ export default function page() {
                                     <path d="M0 12.5A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5V6.85L8.129 8.947a.5.5 0 0 1-.258 0L0 6.85z" />
                                 </svg>
                             </div>
-                            <input onChange={(e)=>{setJob(e.target.value)}} type={"text"} className="bg-gray-800 border-none w-full outline-none text-gray-200 px-2" />
+                            <input required onChange={(e) => { setJob(e.target.value) }} type={"text"} className="bg-gray-800 border-none w-full outline-none text-gray-200 px-2" />
                         </div>
                     </div>
                     <div className="flex flex-col gap-2">
@@ -152,7 +155,7 @@ export default function page() {
                                     <path d="M4.085 1H3.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1h-.585q.084.236.085.5V2a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 4 2v-.5q.001-.264.085-.5M10 7a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0zm-6 4a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0zm4-3a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0V9a1 1 0 0 1 1-1" />
                                 </svg>
                             </div>
-                            <input onChange={(e)=>{setSkills(e.target.value)}} type={"text"} className="bg-gray-800 border-none w-full outline-none text-gray-200 px-2" />
+                            <input required onChange={(e) => { setSkills(e.target.value) }} type={"text"} className="bg-gray-800 border-none w-full outline-none text-gray-200 px-2" />
                         </div>
                     </div>
                     <div className="flex flex-col gap-2">
@@ -164,7 +167,7 @@ export default function page() {
                                     <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1z" />
                                 </svg>
                             </div>
-                            <input onChange={(e)=>{setNumProject(e.target.value)}} type={'number'} className="bg-gray-800 border-none w-full outline-none text-gray-200 px-2" />
+                            <input required onChange={(e) => { setNumProject(e.target.value) }} type={'number'} className="bg-gray-800 border-none w-full outline-none text-gray-200 px-2" />
                         </div>
                     </div>
                     <div className="flex flex-col gap-2">
@@ -178,7 +181,7 @@ export default function page() {
                                     <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 6 6 0 0 1 3.13-1.567" />
                                 </svg>
                             </div>
-                            <input onChange={(e)=>{setSalary(e.target.value)}} type={'number'} className="bg-gray-800 border-none w-full outline-none text-gray-200 px-2" />
+                            <input required onChange={(e) => { setSalary(e.target.value) }} type={'number'} className="bg-gray-800 border-none w-full outline-none text-gray-200 px-2" />
                         </div>
                     </div>
                     <div className="flex flex-col gap-2">
@@ -189,7 +192,7 @@ export default function page() {
                                     <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5" />
                                 </svg>
                             </div>
-                            <input onChange={(e)=>{setDateOfJoin(e.target.value)}} type={'date'} className="bg-gray-800 border-none w-full outline-none text-gray-200 px-2" />
+                            <input required onChange={(e) => { setDateOfJoin(e.target.value) }} type={'date'} className="bg-gray-800 border-none w-full outline-none text-gray-200 px-2" />
                         </div>
                     </div>
                     <div className="flex flex-col gap-2">
@@ -200,7 +203,7 @@ export default function page() {
                                     <path d="M3 0a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h3v-3.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V16h3a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1zm1 2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3.5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5M4 5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zM7.5 5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5m2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zM4.5 8h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5m2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3.5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5" />
                                 </svg>
                             </div>
-                            <input onChange={(e)=>{setAddress(e.target.value)}} type={"text"} className="bg-gray-800 border-none w-full outline-none text-gray-200 px-2" />
+                            <input required onChange={(e) => { setAddress(e.target.value) }} type={"text"} className="bg-gray-800 border-none w-full outline-none text-gray-200 px-2" />
                         </div>
                     </div>
                     <div className="flex flex-col gap-2">
@@ -212,7 +215,7 @@ export default function page() {
                                     <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466z" />
                                 </svg>
                             </div>
-                            <input onChange={(e)=>{setQualification(e.target.value)}} type={"text"} className="bg-gray-800 border-none w-full outline-none text-gray-200 px-2" />
+                            <input required onChange={(e) => { setQualification(e.target.value) }} type={"text"} className="bg-gray-800 border-none w-full outline-none text-gray-200 px-2" />
                         </div>
                     </div>
                     <div className="flex flex-col gap-2">
@@ -223,7 +226,7 @@ export default function page() {
                                     <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm9 1.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4a.5.5 0 0 0-.5.5M9 8a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4A.5.5 0 0 0 9 8m1 2.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5m-1 2C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 0 2 13h6.96q.04-.245.04-.5M7 6a2 2 0 1 0-4 0 2 2 0 0 0 4 0" />
                                 </svg>
                             </div>
-                            <input onChange={(e)=>{setImgIDCard(e.target.files[0])}} type={'file'} className="bg-gray-800 border-none w-full outline-none text-gray-200 px-2" />
+                            <input accept="image/*" required onChange={(e) => { setImgIDCard(e.target.files[0]) }} type={'file'} className="bg-gray-800 border-none w-full outline-none text-gray-200 px-2" />
                         </div>
                     </div>
 

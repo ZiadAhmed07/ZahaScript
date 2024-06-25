@@ -23,6 +23,12 @@ export default function page() {
   
   const translations = t("Index",pathName.slice(1,3))
 
+  useEffect(()=>{
+    if(userData){
+        router.replace(`${pathName.slice(0, 3)}`)
+      }
+},[])
+
   let prevUrl = "/"
   let userData = false
   if (getCookie('userData')) {

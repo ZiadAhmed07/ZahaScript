@@ -4,8 +4,9 @@ import { Domin } from "@/api/data"
 import Loader from "@/components/loader/loader"
 import Svg from "@/components/Svg/svg"
 import axios from "axios"
+import { getCookie } from "cookies-next"
 import { usePathname, useRouter } from "next/navigation"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
 import t from "../../../../../messages/translations"
 
@@ -21,6 +22,18 @@ export default function page() {
     const [otp, setOtp] = useState()
     const Email = localStorage.getItem('email')
     const translation = t('Index',pathName.slice(1,3))
+
+    let userData = false
+    if (getCookie('userData')) {
+      const user = JSON.parse(getCookie('userData'))
+      userData = user
+    }
+
+    useEffect(()=>{
+        if(userData){
+            router.replace(`${pathName.slice(0, 3)}`)
+          }
+    },[])
 
 
     function funRestPass(e) {

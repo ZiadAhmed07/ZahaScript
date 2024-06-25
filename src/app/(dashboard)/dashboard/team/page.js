@@ -57,7 +57,7 @@ export default function Team() {
                             <div key={el.id} className="bg-gray-700 rounded-md p-4 h-[280px] relative">
                                 <div className="flex flex-col items-center">
                                     <div className='relative'>
-                                        <Image src={Avatar} alt=".." className="w-[100px] h-[100px] rounded-full mb-2" />
+                                        <img src={`${Domin}/public/${el.photo}`} alt=".." className="w-[100px] h-[100px] rounded-full mb-2" />
                                         <div className='absolute w-6 h-6 rounded-full bg-blue-500 bottom-2 right-0 flex items-center justify-center text-gray-300 text-xs font-bold pt-1'>
                                             {el.numProject}
                                         </div>

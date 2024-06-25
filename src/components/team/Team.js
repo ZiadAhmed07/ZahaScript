@@ -28,7 +28,7 @@ export default function TeamCom() {
                     <li key={idx} className=" w-44 max-sm:bg-gray-700/50 max-sm:w-full max-sm:p-6">
                         <div className="w-24 h-24 mx-auto">
                             <img
-                                src={`${Domin}/${el.photo}`}
+                                src={`${Domin}/public/${el.photo}`}
                                 className="w-full h-full rounded-full"
                                 alt="..."
                             />

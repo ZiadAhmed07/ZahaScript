@@ -4,7 +4,9 @@ import Image from "next/image"
 import Time from "./_components/time";
 import CheckAdmin from "./_components/checkAdmin";
 import IndexStats from "./_components/Stats/indexStats";
-import NewOrder from "./_components/newOrder";
+import Stateus from "./_components/Stateus";
+import NewOrder from "./_components/NewOrder";
+
 
 
 export default function Home() {
@@ -14,7 +16,7 @@ export default function Home() {
   const date = (new Intl.DateTimeFormat('ar',{dateStyle:'full'})).format(now)
 
   return (
-    <main className="flex flex-col gap-6" dir="rtl">
+    <main className="flex flex-col gap-6">
       <CheckAdmin/>
       <div className="relative w-full h-[220px] bg-gray-500 rounded-lg overflow-hidden">
         <Image src={bg1} alt="..." className="w-full h-full absolute rotate-"/>
@@ -25,7 +27,8 @@ export default function Home() {
       </div>
 
       <IndexStats/>
-      <NewOrder/>
+      <Stateus/>
+
       
     </main>
   );

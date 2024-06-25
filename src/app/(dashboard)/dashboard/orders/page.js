@@ -6,6 +6,7 @@ import { getCookie } from "cookies-next"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import CheckAdmin from "../_components/checkAdmin"
+import FilterOrder from "./filterOrder"
 
 
 export default function orders() {
@@ -85,6 +86,7 @@ export default function orders() {
             <p className="font-bold text-2xl"># العملاء</p>
             <CheckAdmin />
             {getOrders()}
+            <FilterOrder/>
         </div>
     )
 }

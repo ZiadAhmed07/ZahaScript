@@ -1,96 +1,119 @@
-"use client"
+'use client'
 
-import { Domin } from '@/api/data'
-import axios from 'axios'
-import { getCookie } from 'cookies-next'
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { Domin } from "@/api/data"
+import SimLoader from "@/components/simLoader/SimLoader"
+import axios from "axios"
+import { getCookie } from "cookies-next"
+import Link from "next/link"
+import { useEffect, useState } from "react"
+
 
 export default function NewOrder() {
 
-    const [data, setData] = useState(null)
-    const [state , setState] = useState({
-        Users : 0,
-        Comments : 0,
-        Teams : 0,
-        Projects : 0,
-    })
+    const [data, setData] = useState(false)
+    const [noti, setNoti] = useState(false)
 
-    let userData = false
+    let usreData = false
     if (getCookie('userData')) {
-        const user = JSON.parse(getCookie('userData'))
-        userData = user
-    } 
-
-    useEffect(()=>{
-        if(data){
-            setState({
-                Users:data.Users_count,
-                Comments:data.Comments_count,
-                Teams:data.Teams_count,
-                Projects:data.Projects_count
-            })
-        }
-    },[data])
+        usreData = JSON.parse(getCookie('userData'))
+    }
 
     useEffect(() => {
         axios({
             method: 'get',
-            url: `${Domin}/api/admin/showAll/statistics`,
+            url: `${Domin}/api/admin/filter/orders`,
             headers: {
-                'Authorization': `Bearer ${userData.token}`
+                'Authorization': `Bearer ${usreData.token}`
             }
-        }).then((res) => {
-            setData(res.data)
         })
+            .then((res) => {
+                const filter = res.data.filter((el) => {
+                    return el.condition == 'Pending'
+                })
+                setData(filter)
+            })
     }, [])
 
+    const toggle = () => {
+        setNoti(prev => (prev == false ? true : false))
+    }
+
+    function butNoti() {
+        if (data.length > 0) {
+            return (
+                <button onClick={toggle}>
+                    <div className="w-4 h-4 bg-red-500 rounded-full absolute flex items-center justify-center text-sm text-gray-900 font-bold">
+                        {data.length}
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-bell-fill text-yellow-300" viewBox="0 0 16 16">
+                        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901" />
+                    </svg>
+                </button>
+            )
+        } else {
+            return (
+                <button onClick={toggle}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-bell-fill text-yellow-50" viewBox="0 0 16 16">
+                        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901" />
+                    </svg>
+                </button>
+            )
+        }
+    }
+
+    function Notice() {
+        if (data.length == 0) {
+            return (
+                <div className="w-48 h-20 flex items-center justify-center ">
+                    <p className="text-gray-400 font-bold">لايوجد طلبات جديده</p>
+                </div>
+            )
+        }
+        if (data) {
+            return (
+                <div className="flex flex-col">
+                    <p className="px-1 py-2 border-[1px] border-gray-300 text-gray-500">الاشعارات : {data.length}</p>
+                    {
+                        data?.map((el) => {
+                            return (
+                                <Link href={`/dashboard/orders/${el.user_id}`} key={el.id} className=' border-[1px] border-gray-300 p-2 py-3 hover:bg-gray-300 flex gap-4'>
+                                    <div className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center text-2xl font-bold text-gray-50">
+                                        {el.user_id}
+                                    </div>
+                                    <div>
+                                        <p className="text-gray-600 font-bold text-lg">{el.nameProject}</p>
+                                        <p className="text-gray-500 text-sm"> {el.phoneNumber}</p>
+                                    </div>
+                                </Link>
+                            )
+                        })
+                    }
+                </div>
+            )
+        }
+    }
+
+
+
+
+    function listNoti() {
+        if (noti) {
+            return (
+                <div>
+                    <div className=" rounded-md bg-gray-200 absolute top-20 left-[100px] z-20 overflow-hidden min-w-[300px]">
+                        {Notice()}
+                    </div>
+                    <div onClick={toggle} className=' w-full h-full bg-gray-700/40 top-[70px] right-0 fixed'></div>
+                </div>
+            )
+        }
+    }
 
     return (
-        <div className='w-full overflow-auto'>
-            <div className='min-w-[750px] relative '>
-                <div className='w-[50px] h-[400px] border-l-4 border-solid border-gray-700 flex flex-col-reverse items-center justify-between'>
-                    <p>0</p>
-                    <p>5</p>
-                    <p>10</p>
-                    <p>15</p>
-                    <p>20</p>
-                    <p>25</p>
-                    <p>30</p>
-                    <p>35</p>
-                    <p>40</p>
-                </div>
-                <div className='w-full h-[50px] border-t-4 border-solid border-gray-700 flex items-center justify-around gap-1 pr-[50px]'>
-                    <p className=' w-[50px] text-center font-bold'>المستخدمين</p>
-                    <p className=' w-[50px] text-center font-bold'>التعليقات</p>
-                    <p className=' w-[50px] text-center font-bold'>الرسائل</p>
-                    <p className=' w-[50px] text-center font-bold'>الوظائف</p>
-                    <p className=' w-[50px] text-center font-bold'>الطلبات</p>
-                    <p className=' w-[50px] text-center font-bold'>الفريق</p>
-                    <p className=' w-[50px] text-center font-bold'>المشاريع</p>
-                </div>
-                <div className="absolute top-0 w-full h-full overflow-hidden">
-                    <div className='h-full w-full absolute right-[50px]'>
-                        <div className='border-t-[1px] border-gray-800 h-[50px]'></div>
-                        <div className='border-t-[1px] border-gray-800 h-[50px]'></div>
-                        <div className='border-t-[1px] border-gray-800 h-[50px]'></div>
-                        <div className='border-t-[1px] border-gray-800 h-[50px]'></div>
-                        <div className='border-t-[1px] border-gray-800 h-[50px]'></div>
-                        <div className='border-t-[1px] border-gray-800 h-[50px]'></div>
-                        <div className='border-t-[1px] border-gray-800 h-[50px]'></div>
-                        <div className='border-t-[1px] border-gray-800 h-[50px]'></div>
-                    </div>
-                    <div className=' w-full h-full flex items-end justify-around pr-[50px] pb-[50px]'>
-                        <div className={`w-[50px] transition-all h-[${state.Users}0px] bg-yellow-500 transition-all`}></div>
-                        <div className={`w-[50px] transition-all h-[${state.Comments}0px] bg-orange-500`}></div>
-                        <div className={`w-[50px] transition-all h-[10px] bg-pink-500`}></div>
-                        <div className={`w-[50px] transition-all h-[100px] bg-green-600`}></div>
-                        <div className={`w-[50px] transition-all h-[60px] bg-blue-500`}></div>
-                        <div className={`w-[50px] transition-all h-[${state.Teams}0px] bg-red-500`}></div>
-                        <div className={`w-[50px] transition-all h-[${state.Projects}0px] bg-purple-500`}></div>
-                    </div>
-                </div>
-            </div>
+        <div className='flex items-center'>
+            {butNoti()}
+            {listNoti()}
         </div>
     )
 }
+
