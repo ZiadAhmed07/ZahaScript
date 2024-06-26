@@ -139,8 +139,20 @@ export default function page({ params }) {
             )
         }
         if (Team) {
+
+            function FunBoss() {
+                if (Team.Boss == 'Boss') {
+                    return (
+                        <div className="bg-gray-600 absolute w-48 h-8 top-6 -right-14 rotate-45 text-center font-bold text-2xl text-gray-500">
+                            Boss
+                        </div>
+                    )
+                }
+            }
+
             return (
-                <div className="bg-gray-700 relative min-h-[600px] rounded-md py-6 sm:px-20 px-6 flex flex-col items-center gap-6">
+                <div className="bg-gray-700 relative min-h-[600px] rounded-md py-6 sm:px-20 px-6 flex flex-col items-center gap-6 overflow-hidden">
+                    {FunBoss()}
                     <div className="flex flex-col items-center gap-2">
                         <div>
                             <img src={`${Domin}/public/${Team.photo}`} alt="..." className="w-[100px] h-[100px] rounded-full " />

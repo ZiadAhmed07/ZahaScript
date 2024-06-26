@@ -26,6 +26,7 @@ export default function page() {
     const [address, setAddress] = useState("")
     const [qualification, setQualification] = useState("")
     const [imgIDCard, setImgIDCard] = useState("")
+    const [Boss, setBoss] = useState("")
 
     let userData = false
     if (getCookie('userData')) {
@@ -57,7 +58,8 @@ export default function page() {
                     dateOfJoin: dateOfJoin,
                     address: address,
                     qualification: qualification,
-                    imgIDCard: imgIDCard
+                    imgIDCard: imgIDCard,
+                    Boss:Boss
                 }
             }).then((res) => {
                 console.log(res)
@@ -227,6 +229,25 @@ export default function page() {
                                 </svg>
                             </div>
                             <input accept="image/*" required onChange={(e) => { setImgIDCard(e.target.files[0]) }} type={'file'} className="bg-gray-800 border-none w-full outline-none text-gray-200 px-2" />
+                        </div>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                        <div className="w-full flex gap-3 border border-gray-600 border-solid items-center rounded-md overflow-hidden bg-gray-800">
+                            <div className="bg-gray-900 border-l border-gray-600 border-solid p-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-person-vcard-fill" viewBox="0 0 16 16">
+                                    <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm9 1.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4a.5.5 0 0 0-.5.5M9 8a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4A.5.5 0 0 0 9 8m1 2.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5m-1 2C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 0 2 13h6.96q.04-.245.04-.5M7 6a2 2 0 1 0-4 0 2 2 0 0 0 4 0" />
+                                </svg>
+                            </div>
+                            <div className="flex justify-center gap-6 w-full">
+                                <div>
+                                    <label htmlFor="boss">Boss</label>
+                                    <input type={'radio'} name='x' id='boss' value={'Boss'} onChange={(e)=>{setBoss(e.target.value)}}/>
+                                </div>
+                                <div>
+                                    <label htmlFor="team" >team</label>
+                                    <input type={'radio'} name='x' id='team' value={'MemberOfTeam'} onChange={(e)=>{setBoss(e.target.value)}}/>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

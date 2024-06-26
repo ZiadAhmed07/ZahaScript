@@ -53,8 +53,20 @@ export default function Team() {
             return (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {Team?.map((el) => {
+
+                        function FunBoss() {
+                            if (el.Boss == 'Boss') {
+                                return (
+                                    <div className="bg-gray-600 absolute w-48 h-8 top-6 -right-14 rotate-45 text-center font-bold text-2xl text-gray-500">
+                                        Boss
+                                    </div>
+                                )
+                            }
+                        }
+
                         return (
-                            <div key={el.id} className="bg-gray-700 rounded-md p-4 h-[280px] relative">
+                            <div key={el.id} className="bg-gray-700 rounded-md p-4 h-[280px] relative overflow-hidden">
+                                {FunBoss()}
                                 <div className="flex flex-col items-center">
                                     <div className='relative'>
                                         <img src={`${Domin}/public/${el.photo}`} alt=".." className="w-[100px] h-[100px] rounded-full mb-2" />

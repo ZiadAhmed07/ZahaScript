@@ -16,12 +16,17 @@ export default function TeamCom() {
             method:'get',
             url:`${Domin}/api/user/showAll/team`,
         }).then((res)=>{
-            setData(res.data.data)
+            const data = res.data.data
+            const filter = data?.filter((el)=>{
+                return el.Boss != 'Boss'
+            })
+            setData(filter)
         })
     },[])
 
     function HtmlTeam() {
         if (data) {
+
             return (
                 data?.map((el , idx) => {
                     return(

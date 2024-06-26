@@ -1,38 +1,26 @@
 "use client"
+import { Domin } from "@/api/data"
+import axios from "axios"
 import Image from "next/image"
 import { useState, useEffect } from "react"
-import Avatar3 from "/public/images/3.png"
-import Avatar4 from "/public/images/4.png"
-import Avatar5 from "/public/images/5.png"
+
 
 export default function Boss() {
 
     const [data, setData] = useState(false)
 
-    let ArrBossData = [
-        {
-            name:"Hebatallah Ali",
-            job:"BackEnd Developer",
-            jobManager : "Backend Team Manager",
-            img:Avatar4,
-        },
-        {
-            name:"Ziad Ahemd",
-            job:"FrontEnd Developer",
-            jobManager : "Frontend Team Manager",
-            img:Avatar3,
-        },
-        {
-            name:"Hazem Muhammed",
-            job:"FrontEnd Developer",
-            jobManager : "Marketting Team Manager",
-            img:Avatar5,
-        }
-    ]
-
-    setTimeout(()=>{
-        setData(ArrBossData)
-    },1500)
+    useEffect(()=>{
+        axios({
+            method:'get',
+            url:`${Domin}/api/user/showAll/team`,
+        }).then((res)=>{
+            const data = res.data.data
+            const filter = data?.filter((el)=>{
+                return el.Boss == 'Boss'
+            })
+            setData(filter)
+        })
+    },[])
 
     function HtmlBoss() {
         if (data) {
@@ -41,16 +29,15 @@ export default function Boss() {
                     return (
                         <li key={idx}>
                             <div className="w-28 h-28 mx-auto">
-                                <Image
-                                    src={el.img}
+                                <img
+                                    src={`${Domin}/public/${el.photo}`}
                                     className="w-full h-full rounded-full"
                                     alt="..."
                                 />
                             </div>
                             <div className="mt-2">
                                 <h4 className="text-gray-200 font-bold text-lg">{el.name}</h4>
-                                <p className="text-blue-600 text-lg">{el.job}</p>
-                                <p className="text-blue-500 text-lg">{el.jobManager}</p>
+                                <p className="text-blue-600 text-lg font-bold">{el.job}</p>
                             </div>
                         </li>
                     )

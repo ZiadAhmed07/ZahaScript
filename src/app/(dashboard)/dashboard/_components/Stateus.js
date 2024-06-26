@@ -89,7 +89,7 @@ export default function Stateus() {
                         <div className='border-t-[1px] border-gray-800 h-[50px]'></div>
                     </div>
                     <div className=' w-full h-full flex items-end justify-around pr-[50px] pb-[50px]'>
-                        <div className={`w-[50px] transition-all h-[${state.Users}0px] bg-yellow-500 transition-all`}></div>
+                        <div className={`w-[50px] transition-all h-[${state.Users}0px] bg-yellow-500`}></div>
                         <div className={`w-[50px] transition-all h-[${state.Comments}0px] bg-orange-500`}></div>
                         <div className={`w-[50px] transition-all h-[${state.Contacts}0px] bg-pink-500`}></div>
                         <div className={`w-[50px] transition-all h-[${state.Jobs}0px] bg-green-600`}></div>
