@@ -82,12 +82,12 @@ export default function Testimonials() {
             return (
                 data?.map((el) => {
                     return (
-                        <div key={el.id} className='bg-gray-700/70 flex flex-col h-[220px] rounded-md overflow-hidden justify-between'>
-                            <div className="p-3">
+                        <div key={el.id} className='bg-gray-700/70 flex flex-col h-[220px] rounded-md justify-between'>
+                            <div className="p-3 h-[135px] overflow-auto border-l-4 border-t-4 border-blue-500 ">
                                 <p className="text-lg">" {el.comment.comment} "</p>
                             </div>
                             <div className="bg-gray-600/70 h-[70px] flex items-center gap-6 px-6">
-                                <div className="w-[45px] h-[45px] text-gray-200 font-extrabold text-2xl rounded-full bg-blue-500 flex items-center justify-center">Z</div>
+                                <div className="w-[45px] h-[45px] text-gray-200 font-extrabold text-2xl rounded-full bg-blue-500 flex items-center justify-center">{el.comment.user.name[0]}</div>
                                 <div>
                                     <p className=" text-lg">{el.comment.user.name}</p>
                                     <p className=" text-lg">{el.comment.user.email}</p>
