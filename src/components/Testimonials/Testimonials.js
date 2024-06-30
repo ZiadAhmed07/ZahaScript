@@ -82,7 +82,7 @@ export default function Testimonials() {
             return (
                 data?.map((el) => {
                     return (
-                        <div key={el.id} className='bg-gray-700/70 flex flex-col h-[220px] rounded-md justify-between'>
+                        <div key={el.id} dir="ltr" className='bg-gray-700/70 flex flex-col h-[220px] rounded-md justify-between'>
                             <div className="p-3 h-[135px] overflow-auto border-l-4 border-t-4 border-blue-500 ">
                                 <p className="text-lg">" {el.comment.comment} "</p>
                             </div>
