@@ -4,6 +4,7 @@ import NextTopLoader from 'nextjs-toploader';
 import { ToastContainer, toast } from 'react-toastify';
 import Cursor from "@/components/cursor/Cursor";
 import "./globals.css"
+import Script from "next/script";
  
 const ibm = Noto_Kufi_Arabic({
    subsets: ["arabic"],
@@ -19,6 +20,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          async 
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2615618117836366"
+          crossorigin="anonymous"
+        />
+      </head>
       <body className={ibm.className}>
         <ToastContainer theme={"colored"} className="max-sm:w-[320px] top-10"/>
         <NextTopLoader height={5}/>
